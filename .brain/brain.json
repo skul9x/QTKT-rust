@@ -1,0 +1,43 @@
+{
+  "project": {
+    "name": "QTKT Maker",
+    "type": "Tauri/SvelteKit/Rust App",
+    "description": "AI-powered technical procedure (QTKT) generator"
+  },
+  "tech_stack": {
+    "frontend": "SvelteKit, TailwindCSS",
+    "backend": "Rust (Tauri)",
+    "docx_library": "docx-rs",
+    "ai_api": "Gemini 3 Flash Preview (v1beta)",
+    "capabilities": {
+      "folder_opening": "Custom native Rust command (bypasses browser-level permission blocks)"
+    }
+  },
+  "standards": {
+    "docx_formatting": {
+      "margin_top": "2.5cm (1417 twips)",
+      "margin_bottom": "2.0cm (1134 twips)",
+      "margin_left": "3.0cm (1701 twips)",
+      "margin_right": "2.5cm (1417 twips)",
+      "font_name": "Times New Roman",
+      "content_size": "13pt",
+      "title_size": "14pt",
+      "line_spacing": "1.0",
+      "paragraph_before": "6pt",
+      "paragraph_after": "0pt"
+    }
+  },
+  "features": [
+    "AI QTKT Generation (Single & Batch)",
+    "Immediate Process Cancellation (Stop Button)",
+    "Split Export Paths (Separate settings for AI vs Merged files)",
+    "DOCX Export with BYT Standards",
+    "Secure API Key Rotation (Memory-mapped cooldown)",
+    "DOCX Merging (High-Parity XML-based with whitespace preservation)",
+    "UX Improvement (Success Modal & Custom Native Open Folder)"
+  ],
+  "api_endpoints": [
+    { "path": "save_merge_export_path", "explained": "Lưu đường dẫn thư mục xuất cho tính năng gộp file vào file fallback." },
+    { "path": "get_merge_export_path", "explained": "Lấy đường dẫn thư mục gộp file, mặc định là Downloads." }
+  ]
+}

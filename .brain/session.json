@@ -1,0 +1,49 @@
+{
+  "updated_at": "2026-03-15T00:26:00Z",
+  "working_on": {
+    "feature": "Process Control & Custom Configuration",
+    "task": "Stop Button & Separate Export Paths",
+    "status": "stable",
+    "last_run_url": "http://localhost:1420",
+    "files": [
+      "src/lib/components/screens/Generator.svelte",
+      "src/lib/components/screens/Settings.svelte",
+      "src/lib/components/screens/Merger.svelte",
+      "src-tauri/src/secure_storage.rs",
+      "src-tauri/src/docx_merger.rs"
+    ],
+    "notes": "Implemented immediate process stop in frontend and separated export settings for AI generation vs file merging to improve file organization."
+  },
+  "recent_changes": [
+    {
+      "type": "feat",
+      "description": "Added 'Stop' button to Generator screen with immediate cancellation logic for both single and batch modes.",
+      "files": ["src/lib/components/screens/Generator.svelte"]
+    },
+    {
+      "type": "feat",
+      "description": "Implemented separate persistent export path settings for Merged DOCX files.",
+      "files": ["src-tauri/src/secure_storage.rs", "src/lib/components/screens/Settings.svelte", "src-tauri/src/docx_merger.rs"]
+    },
+    {
+      "type": "fix",
+      "description": "Fixed 'Cancel' button behavior in batch mode dialog by switching to Tauri's async 'ask' API and ensuring the view resets on cancellation.",
+      "files": ["src/lib/components/screens/Generator.svelte"]
+    },
+    {
+      "type": "fix",
+      "description": "Fixed UI bug where the Stop button was only visible after first file was generated in batch mode.",
+      "files": ["src/lib/components/screens/Generator.svelte"]
+    }
+  ],
+  "decisions_made": [
+    {
+      "decision": "Frontend-driven cancellation flag",
+      "reason": "Immediate UI feedback is crucial; checking for a local 'isCancelled' flag after each async call in the loop is the most reliable way to halt the process without complex backend thread management."
+    },
+    {
+      "decision": "Separated .merge_export_path.fallback file",
+      "reason": "Decoupling AI generation paths from Merged file paths allows users to organize their source and final combined files into different folders easily."
+    }
+  ]
+}
