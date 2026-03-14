@@ -41,7 +41,7 @@
 
   <div class="p-4 border-t border-white/5 space-y-4">
     <div class="flex flex-col gap-0.5 px-2 opacity-40 hover:opacity-100 transition-opacity">
-        <p class="text-[10px] font-bold tracking-widest text-primary uppercase">Version 1.0.0</p>
+        <p class="text-[10px] font-bold tracking-widest text-primary uppercase">Version 1.0.1</p>
         <p class="text-[10px] text-text-muted leading-relaxed">© 2026 Nguyễn Duy Trường</p>
     </div>
   </div>
