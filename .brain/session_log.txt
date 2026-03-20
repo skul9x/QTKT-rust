@@ -2,3 +2,10 @@
 [18:42] ALL PHASES COMPLETE. API Key Rotation system implemented and verified with unit tests.
 [20:34] RUN SUCCESS: App running at http://localhost:1420
 [23:26] RUN SUCCESS: App running at http://localhost:1420
+<<<<<<< HEAD
+=======
+[20:05] DONE Phase 02: File Import & Logic ✅
+[20:05] START Phase 03: Table & UI Effects 🟡
+[2026-03-20 20:05] DONE Phase 03: Table & UI Effects. Implemented table listing and marquee text scrolling.
+[2026-03-20 20:10] DONE Phase 04 & 05: JSON & UX State. Buttons now persist with ✔️ Done status.
+>>>>>>> 7c06af7 (Cập nhật README.md, .gitignore và cấu trúc dự án chuẩn v1.0.1)

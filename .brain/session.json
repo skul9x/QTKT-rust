@@ -1,4 +1,5 @@
 {
+<<<<<<< HEAD
   "updated_at": "2026-03-15T00:26:00Z",
   "working_on": {
     "feature": "Process Control & Custom Configuration",
@@ -34,10 +35,55 @@
       "type": "fix",
       "description": "Fixed UI bug where the Stop button was only visible after first file was generated in batch mode.",
       "files": ["src/lib/components/screens/Generator.svelte"]
+=======
+  "updated_at": "2026-03-20T20:25:00Z",
+  "working_on": {
+    "feature": "Tìm kiếm BYT (Clone prompt.py)",
+    "current_plan_path": "plans/260320-1951-tim-kiem-byt/",
+    "current_phase": "phase-05",
+    "task": "Polish & Final Cleanup",
+    "status": "complete",
+    "files": [
+      "src/lib/components/screens/TimKiemBYT.svelte"
+    ],
+    "notes": "Feature complete. Applied final UI polish for text fading logic."
+  },
+  "recent_changes": [
+    {
+      "type": "fix",
+      "description": "Fixed text fading issue in table using CSS :has(.is-scrolling) selector.",
+      "files": [
+        "src/lib/components/screens/TimKiemBYT.svelte"
+      ]
+    },
+    {
+      "type": "feat",
+      "description": "Implemented Phase 05: UX Persistence (emerald visual 'Done' state) and list reset logic.",
+      "files": [
+        "src/lib/components/screens/TimKiemBYT.svelte"
+      ]
+    },
+    {
+      "type": "feat",
+      "description": "Implemented Phase 04: JSON alert generator and Copy to clipboard logic with visual feedback.",
+      "files": [
+        "src/lib/components/screens/TimKiemBYT.svelte"
+      ]
+    },
+    {
+      "type": "feat",
+      "description": "Created TimKiemBYT screen and integrated into Sidebar navigation (Phases 01-03).",
+      "files": [
+        "src/lib/components/screens/TimKiemBYT.svelte",
+        "src/lib/components/Sidebar.svelte",
+        "src/routes/+page.svelte"
+      ]
+>>>>>>> 7c06af7 (Cập nhật README.md, .gitignore và cấu trúc dự án chuẩn v1.0.1)
     }
   ],
   "decisions_made": [
     {
+<<<<<<< HEAD
       "decision": "Frontend-driven cancellation flag",
       "reason": "Immediate UI feedback is crucial; checking for a local 'isCancelled' flag after each async call in the loop is the most reliable way to halt the process without complex backend thread management."
     },
@@ -47,3 +93,11 @@
     }
   ]
 }
+=======
+      "decision": "Integrated tab-based navigation",
+      "reason": "Maintaining consistency with the existing SvelteKit app structure instead of creating a separate route file."
+    }
+  ]
+}
+
+>>>>>>> 7c06af7 (Cập nhật README.md, .gitignore và cấu trúc dự án chuẩn v1.0.1)

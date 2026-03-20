@@ -1,44 +1,36 @@
-# 💡 BRIEF: Tính năng "Dừng" sinh quy trình (Stop Button)
+# 💡 BRIEF: Tính năng Tìm kiếm BYT (Clone từ prompt.py)
 
-**Ngày tạo:** 14/03/2026
+**Ngày tạo:** 2026-03-20
+**Brainstorm cùng:** User
 
 ---
 
 ## 1. VẤN ĐỀ CẦN GIẢI QUYẾT
-Hiện tại, khi ứng dụng đang gọi AI để sinh nội dung (đặc biệt là khi chạy lô hàng loạt nhiều quy trình), hệ thống bị khóa lại (isGenerating = true) cho đến khi hoàn thành hoặc có lỗi. Người dùng không có cách nào để dừng khẩn cấp giữa chừng nếu lỡ cấu hình sai, muốn sửa lại tên, hoặc đổi ý không muốn chạy tiếp nữa.
+Người dùng hiện đang dùng script Python (`prompt.py`) để sinh các đoạn prompt tìm kiếm quyết định BYT dựa trên file txt danh sách "Quy trình kỹ thuật". 
 
 ## 2. GIẢI PHÁP ĐỀ XUẤT
-Thêm một nút **"Dừng" (Stop/Cancel)** màu đỏ nổi bật xuất hiện bên cạnh tiến trình khi ứng dụng đang trong trạng thái `isGenerating`.
-
-**Cơ chế hoạt động:**
-- **Chế độ hàng loạt (Batch Mode):** Dừng ngay lập tức việc gọi các quy trình tiếp theo trong danh sách. Quy trình nào đang gọi dở sẽ đợi hoàn tất rồi hệ thống dừng hẳn.
-- **Chế độ làm lẻ (Single Mode):** Ngắt trạng thái chờ trên màn hình, báo cho người dùng biết đã hủy lệnh, cho phép người dùng bấm tạo quy trình mới ngay lập tức.
-- **Backend (Rust):** Việc hủy hoàn toàn (Cancel) kết nối HTTP tới Google Gemini khi đang chạy là có thể làm được nhưng phức tạp. Giải pháp tối ưu cho UX là xử lý ở Frontend (Svelte):
-    - Khi bấm "Dừng", UI phải cập nhật ngay lập tức (ẩn nút Dừng, hiện lại nút Chạy).
-    - Chốt chặn (isCancelled) được kiểm tra gắt gao sau mỗi bước chờ (await) để ngưng mọi hành động ghi file hay log tiếp theo.
-    - Đảm bảo khi chạy Batch, nút "Dừng" xuất hiện ngay từ đầu.
+Tạo hoàn toàn một Tab mới có tên là **"Tìm kiếm BYT"** ngay trong ứng dụng. Tab này cho phép đọc file `.txt` list sẵn, render ra bảng, và xuất JSON prompt siêu tốc với cải tiến UX tốt hơn so với script python cũ.
 
 ## 3. ĐỐI TƯỢNG SỬ DỤNG
-- Người dùng đang dùng chế độ "Tạo QTKT Hàng Loạt" cần hủy ngang.
-- Người dùng đợi lâu do mạng chậm muốn hủy tiến trình hiện tại.
+- **Primary:** Người dùng làm việc với văn bản pháp quy tế (tra cứu BYT).
 
-## 4. NGHIÊN CỨU THỊ TRƯỜNG & UX
-- Hầu hết các công cụ AI (như ChatGPT, Claude) đều có nút "Stop generating" để tiết kiệm thời gian chờ và quota api.
-
-## 5. TÍNH NĂNG
+## 4. TÍNH NĂNG
 
 ### 🚀 MVP (Bắt buộc có):
-- [ ] Thêm nút **Dừng / Hủy** xuất hiện khi `isGenerating = true`.
-- [ ] Xử lý logic ngắt vòng lặp (`break`) trong hàm `handleBatch` ở frontend nếu người dùng bấm dừng.
-- [ ] Xử lý logic reset trạng thái UI ở hàm `handleGenerate` nếu người dùng bấm dừng.
-- [ ] In thông báo log "🛑 Đã hủy tiến trình bởi người dùng" ra màn hình.
+- [x] **Giao diện tab:** Thêm Navigation item cho tab **"Tìm kiếm BYT"**.
+- [ ] **Import File:** Tính năng upload 1 file `.txt` chứa danh sách quy trình thành file.
+- [ ] **Giao diện Bảng:** 3 cột chức năng: 
+  - **Cột 1:** STT.
+  - **Cột 2:** Tên Quy trình (Text). Trường hợp text siêu dài -> tự động áp dụng hiệu ứng trượt chữ (marquee) để bảo vệ layout bảng không bị phình.
+  - **Cột 3:** Nút "Copy". Đặc biệt, **Cải tiến UX trạng thái:** Khi user click "Copy", nút sẽ chuyển thành hiệu ứng "Dấu tích / Done" (Đã Copy) để user dễ theo dõi. Trạng thái "Đã Copy" này sẽ được lưu giữ liên tục trên UI cho đến khi user import một file `.txt` mới thì mới reset lại.
+- [ ] **Logic Gen Prompt JSON & Copy:** Khi bấm, sinh JSON dựa trên format có sẵn với dòng tương ứng rồi chép thẳng vô Clipboard (Kèm Toast "Đã theo tác..").
 
-### 🎁 Phase 2 (Cân nhắc làm sau):
-- [ ] Truyền tín hiệu (Cancel Token) xuống tận Backend Rust để ngắt luôn connection HTTP reqwest tới Gemini, giúp tiết kiệm triệt để quota API nếu file đang sinh dở.
+### 💭 Backlog (Có thể cập nhật sau này):
+- Xem chi tiết source JSON.
 
-## 6. ƯỚC TÍNH SƠ BỘ
-- **Độ phức tạp:** **ĐƠN GIẢN** (chỉ tốn khoảng 30 phút - 1 tiếng).
-- **Rủi ro:** Cần chú ý file đang làm dở có thể vẫn lưu vào máy nếu chạy ở Backend, cần quản lý kỹ thông báo log để người dùng không bối rối.
+## 5. ƯỚC TÍNH SƠ BỘ
+- **Độ phức tạp:** Đơn giản
+- **Rủi ro:** Không có. JSON rule được hardcode 1:1 từ Python.
 
-## 7. BƯỚC TIẾP THEO
-→ Chạy `/plan` để lên thiết kế chi tiết các file cần sửa.
+## 6. BƯỚC TIẾP THEO
+→ Chạy `/plan` để lên thiết kế chi tiết

@@ -1,9 +1,9 @@
 <script lang="ts">
-  import { FileText, Files, Settings, Wand2, BookOpen } from "lucide-svelte";
+  import { FileText, Files, Settings, Wand2, BookOpen, Search } from "lucide-svelte";
 
   interface Props {
-    activeTab: "generator" | "merger" | "settings" | "guide";
-    onTabChange: (tab: "generator" | "merger" | "settings" | "guide") => void;
+    activeTab: "generator" | "merger" | "tim_kiem" | "settings" | "guide";
+    onTabChange: (tab: "generator" | "merger" | "tim_kiem" | "settings" | "guide") => void;
   }
 
   let { activeTab, onTabChange }: Props = $props();
@@ -11,6 +11,7 @@
   const menuItems = [
     { id: "generator", label: "Tạo QTKT", icon: Wand2 },
     { id: "merger", label: "Gộp File", icon: Files },
+    { id: "tim_kiem", label: "Tìm Kiếm BYT", icon: Search },
     { id: "settings", label: "Cài Đặt", icon: Settings },
     { id: "guide", label: "HDSD", icon: BookOpen },
   ];

@@ -30,9 +30,10 @@
   import Merger from "$lib/components/screens/Merger.svelte";
   import Settings from "$lib/components/screens/Settings.svelte";
   import Guide from "$lib/components/screens/Guide.svelte";
+  import TimKiemByt from "$lib/components/screens/TimKiemBYT.svelte";
   import Onboarding from "$lib/components/Onboarding.svelte";
 
-  let activeTab: "generator" | "merger" | "settings" | "guide" = $state("generator");
+  let activeTab: "generator" | "merger" | "tim_kiem" | "settings" | "guide" = $state("generator");
   let isLoading = $state(true);
   let isGenerating = $state(false);
 
@@ -57,7 +58,7 @@
   </div>
 {:else}
   <div class="flex h-screen bg-background text-text overflow-hidden font-inter select-none">
-    <Sidebar {activeTab} onTabChange={(tab: "generator" | "merger" | "settings" | "guide") => activeTab = tab} />
+    <Sidebar {activeTab} onTabChange={(tab: "generator" | "merger" | "tim_kiem" | "settings" | "guide") => activeTab = tab} />
 
     <main class="flex-1 relative overflow-y-auto bg-[radial-gradient(circle_at_top_right,rgba(14,165,233,0.05),transparent_40%)]">
       <div class="h-full">
@@ -66,6 +67,9 @@
         </div>
         <div class={activeTab === 'merger' ? 'h-full' : 'hidden'}>
           <Merger />
+        </div>
+        <div class={activeTab === 'tim_kiem' ? 'h-full' : 'hidden'}>
+          <TimKiemByt />
         </div>
         <div class={activeTab === 'settings' ? 'h-full' : 'hidden'}>
           <Settings {isGenerating} />
