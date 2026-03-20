@@ -1,10 +1,10 @@
 [package]
-name = "tauri-app"
-version = "0.1.0"
-description = "A Tauri App"
-authors = ["you"]
+name = "qtkt-maker"
+version = "1.0.2"
+description = "QTKT Maker chuẩn tiếng Việt, tuân thủ Bộ Y Tế."
+authors = ["Nguyễn Duy Trường <skul9x@gmail.com>"]
 edition = "2021"
-default-run = "tauri-app"
+default-run = "qtkt-maker"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
